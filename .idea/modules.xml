@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/optional-angular-assignment.iml" filepath="$PROJECT_DIR$/.idea/optional-angular-assignment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sprintboot-application/optional-angular-project.iml" filepath="$PROJECT_DIR$/sprintboot-application/optional-angular-project.iml" />
+    </modules>
+  </component>
+</project>
