@@ -7,13 +7,16 @@ import { AppComponent } from './app.component';
 import { UserService } from './service/user.service';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { ChecklistFormComponent } from './checklist-form/checklist-form.component';
+import { ChecklistService } from './checklist-service/checklist.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    UserFormComponent
+    UserFormComponent,
+    ChecklistFormComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,7 @@ import { UserFormComponent } from './user-form/user-form.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService,ChecklistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

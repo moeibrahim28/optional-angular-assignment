@@ -1,4 +1,4 @@
-package com.example.optionalangularproject;
+package com.example.optionalangularproject.model;
 
 import lombok.Getter;
 import lombok.Setter;

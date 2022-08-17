@@ -1,0 +1,40 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #checklistForm="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" [(ngModel)]="checklist.name" 
+            class="form-control" 
+            id="name" 
+            name="name" 
+            placeholder="Enter your name"
+            required #name="ngModel">
+        </div>
+        <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
+        
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                
+                
+                <th scope="col">Item ID</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Add</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr *ngFor="let item of items">
+                
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td><button (click)="addItemToList($event, item)"> ADD TO LIST</button></td>
+              </tr>
+            </tbody>
+          </table>
+        
+         <button type="submit" [disabled]="!checklistForm.form.valid" 
+          class="btn btn-info">Submit</button>
+      </form> -->
+    </div>
+  </div>

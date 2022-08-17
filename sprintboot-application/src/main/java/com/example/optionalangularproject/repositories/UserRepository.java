@@ -1,5 +1,6 @@
-package com.example.optionalangularproject;
+package com.example.optionalangularproject.repositories;
 
+import com.example.optionalangularproject.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

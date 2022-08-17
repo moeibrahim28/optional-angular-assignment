@@ -1,6 +1,9 @@
 package com.example.optionalangularproject;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.optionalangularproject.model.Item;
+import com.example.optionalangularproject.model.User;
+import com.example.optionalangularproject.repositories.ItemRepository;
+import com.example.optionalangularproject.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +20,7 @@ public class Application {
 
 
 	@Bean
-	CommandLineRunner init(UserRepository userRepository) {
+	CommandLineRunner init(UserRepository userRepository, ItemRepository itemRepository) {
 		return args -> {
 			Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
 				User user = new User();
@@ -26,6 +29,20 @@ public class Application {
 				userRepository.save(user);
 			});
 			userRepository.findAll().forEach(System.out::println);
+
+			Stream.of("Soda", "Milk", "Chips", "Eggs", "Bread",
+					"Cereal", "Oatmeal", "Candy", "Cheese", "Beer",
+					"Water", "Chocolate", "Cookies", "Eggs", "Cupcakes",
+					"Breakfast Bars", "Fruits", "Vegetables", "Coffee", "Yogurt",
+					"Juice", "Beef", "Chicken", "Hot Dogs", "Peanut Butter",
+					"Sandwiches", "Pizza", "Whipped Cream", "Sausage", "Macaroni",
+					"Biscuits", "Fish", "Rice", "Tea", "Coffee").forEach(name -> {
+				Item item = new Item();
+
+				item.setName(name);
+				itemRepository.save(item);
+			});
+			itemRepository.findAll().forEach(System.out::println);
 		};
 	}
 }

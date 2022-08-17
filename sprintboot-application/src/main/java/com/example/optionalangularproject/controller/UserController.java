@@ -1,5 +1,7 @@
-package com.example.optionalangularproject;
+package com.example.optionalangularproject.controller;
 
+import com.example.optionalangularproject.repositories.UserRepository;
+import com.example.optionalangularproject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
