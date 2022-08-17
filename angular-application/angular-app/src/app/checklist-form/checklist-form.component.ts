@@ -4,6 +4,7 @@ import { ChecklistService } from 'app/checklist-service/checklist.service';
 import { Checklist } from 'app/checklist-model/checklist';
 import { Item } from 'app/checklist-model/item';
 import { ItemService } from 'app/checklist-service/item.service';
+import { NotFoundError, of } from 'rxjs';
 
 @Component({
   selector: 'app-checklist-form',
@@ -14,6 +15,7 @@ export class ChecklistFormComponent implements OnInit{
 
   items!: Item[];
   checklist: Checklist;
+  selectedItems: Item[] = new Array;
 
   constructor(
     private route: ActivatedRoute, 
@@ -23,18 +25,26 @@ export class ChecklistFormComponent implements OnInit{
   }
 
   onSubmit() {
-    this.checklist.itemList = this.items;
-    this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
+    this.checklist.itemList = this.selectedItems;
+    this.checklistService.save(this.checklist).subscribe();
   }
 
-  addItemToList(event: any,item: Item) {
-    // this.checklist.itemList.push(this.findItem(item));
+  addItemToList(item: Item) {
+    this.findItem(item)
+     this.selectedItems.push(this.findItem(item));
+     console.log(this.selectedItems)
     
   }
   
 
-  findItem(item:Item){
-    return this.checklistService.findItem(item);
+  findItem(item:Item):Item{
+    console.log(item.id)
+    
+   const foundItem = this.items.find((obj) => {
+    return obj.id === item.id;
+  });
+  console.log(foundItem)
+   return foundItem!;
   }
 
   gotoChecklistList() {

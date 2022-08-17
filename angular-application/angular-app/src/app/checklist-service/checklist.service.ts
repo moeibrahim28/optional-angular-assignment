@@ -20,12 +20,10 @@ export class ChecklistService {
   }
 
   public findAllItems(): Observable<Item[]> {
-    
     return this.http.get<Item[]>(this.itemsUrl);
   }
 
   public findItem(item:Item): Observable<Item> {
-    
     return this.http.get<Item>(this.itemsUrl+"/"+item.id);
   }
 

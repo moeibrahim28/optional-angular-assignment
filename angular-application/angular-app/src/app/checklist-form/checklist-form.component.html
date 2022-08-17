@@ -1,5 +1,6 @@
 <div class="card my-5">
     <div class="card-body">
+        
       <form (ngSubmit)="onSubmit()" #checklistForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
@@ -28,7 +29,7 @@
                 
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
-                <td><button (click)="addItemToList($event, item)"> ADD TO LIST</button></td>
+                <td><button type = "button"(click)="addItemToList(item)"> ADD TO LIST {{item.name}}</button></td>
               </tr>
             </tbody>
           </table>

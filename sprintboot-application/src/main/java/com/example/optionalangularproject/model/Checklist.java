@@ -13,10 +13,13 @@ import java.util.List;
 @Setter
 public class Checklist {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
 
-    @ManyToMany(mappedBy = "checklists", cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "checklists_itemslists",
+            joinColumns = @JoinColumn(name = "checklists_id"),
+            inverseJoinColumns = @JoinColumn(name = "items_id"))
     private List<Item> itemList = new ArrayList<>();
 }
