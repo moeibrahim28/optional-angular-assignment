@@ -32,7 +32,6 @@ export class ChecklistFormComponent implements OnInit{
   addItemToList(item: Item) {
     this.findItem(item)
      this.selectedItems.push(this.findItem(item));
-     console.log(this.selectedItems)
     
   }
   
