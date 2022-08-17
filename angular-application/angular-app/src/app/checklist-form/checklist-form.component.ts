@@ -28,7 +28,7 @@ export class ChecklistFormComponent implements OnInit{
   }
 
   addItemToList(event: any,item: Item) {
-    this.checklist.itemList.push(this.findItem(item));
+    // this.checklist.itemList.push(this.findItem(item));
     
   }
   
