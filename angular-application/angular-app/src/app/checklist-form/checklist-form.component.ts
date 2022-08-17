@@ -26,7 +26,7 @@ export class ChecklistFormComponent implements OnInit{
 
   onSubmit() {
     this.checklist.itemList = this.selectedItems;
-    this.checklistService.save(this.checklist).subscribe();
+    this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
   }
 
   addItemToList(item: Item) {

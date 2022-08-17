@@ -9,6 +9,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { ChecklistFormComponent } from './checklist-form/checklist-form.component';
 import { ChecklistService } from './checklist-service/checklist.service';
+import { ChecklistListComponent } from './checklist-list/checklist-list.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ChecklistService } from './checklist-service/checklist.service';
     AppComponent,
     UserListComponent,
     UserFormComponent,
-    ChecklistFormComponent
+    ChecklistFormComponent,
+    ChecklistListComponent
   ],
   imports: [
     BrowserModule,

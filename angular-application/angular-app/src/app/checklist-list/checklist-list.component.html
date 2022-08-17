@@ -1,0 +1,22 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Checklists</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let checklist of checklists">
+            <td>{{ checklist.id }}</td>
+            <td>{{ checklist.name }}</td>
+            
+            <td><tr *ngFor="let item of checklist.itemList">{{ item.name }}</tr></td>
+        </tr>
+         
+        </tbody>
+      </table>
+    </div>
+  </div>
