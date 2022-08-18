@@ -16,6 +16,7 @@ export class ChecklistFormComponent implements OnInit{
   items!: Item[];
   checklist: Checklist;
   selectedItems: Item[] = new Array;
+  tags:String = "";
 
   constructor(
     private route: ActivatedRoute, 
@@ -26,6 +27,7 @@ export class ChecklistFormComponent implements OnInit{
 
   onSubmit() {
     this.checklist.itemList = this.selectedItems;
+    // this.checklist.tagList = this.addTagsToChecklist(tags);
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
   }
 
@@ -33,6 +35,12 @@ export class ChecklistFormComponent implements OnInit{
     this.findItem(item)
      this.selectedItems.push(this.findItem(item));
     
+  }
+
+  addTagsToChecklist(tags: string):string[] {
+    let tagsArray:string[] = new Array;
+    tagsArray = tags.split(",");
+    return tagsArray;
   }
   
 
