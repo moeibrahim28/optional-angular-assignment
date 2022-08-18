@@ -17,6 +17,6 @@ public class Item {
     private long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Checklist> checklists = new ArrayList<>();
 }

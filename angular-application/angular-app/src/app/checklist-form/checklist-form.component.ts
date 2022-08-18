@@ -3,10 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChecklistService } from 'app/checklist-service/checklist.service';
 import { Checklist } from 'app/checklist-model/checklist';
 import { Item } from 'app/checklist-model/item';
-import { ItemService } from 'app/checklist-service/item.service';
-import { NotFoundError, of } from 'rxjs';
-import { TagService } from 'app/checklist-service/tag.service';
-import { Tag } from 'app/checklist-model/tag';
 
 @Component({
   selector: 'app-checklist-form',
@@ -16,46 +12,36 @@ import { Tag } from 'app/checklist-model/tag';
 export class ChecklistFormComponent implements OnInit{
 
   items!: Item[];
-  allTags!: Tag[];
   checklist: Checklist;
   selectedItems: Item[] = new Array;
-  selectedTags:Tag[] = new Array;
+  tagsString: string="";
 
   constructor(
     private route: ActivatedRoute, 
       private router: Router, 
-        private checklistService: ChecklistService,
-        private tagService: TagService) {
+        private checklistService: ChecklistService) {
     this.checklist = new Checklist();
   }
 
   onSubmit() {
     this.checklist.itemList = this.selectedItems;
-    this.checklist.tagsList = this.selectedTags;
+    
+    this.checklist.tags = this.addNewTagsToChecklist(this.tagsString);
+    
     console.log(this.checklist)
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
+   
+  }
+
+  addNewTagsToChecklist(tagsString: string):string[] {
+    let tagsArray: string[] = tagsString.split(",");
+    return tagsArray;
   }
 
   addItemToList(item: Item) {
     this.findItem(item)
      this.selectedItems.push(this.findItem(item));
     
-  }
-
-  addTagsToChecklist(tag: Tag) {
-    this.findTag(tag)
-     this.selectedTags.push(this.findTag(tag));
-    
-  }
-  
-
-  findTag(tag:Tag):Tag{
-    const foundTag = this.allTags.find((obj) => {
-      return obj.id === tag.id;
-    });
-    console.log(foundTag)
-    return foundTag!;
-
   }
 
   findItem(item:Item):Item{
@@ -74,8 +60,6 @@ export class ChecklistFormComponent implements OnInit{
     this.checklistService.findAllItems().subscribe((data) => {
       this.items=data;
     });
-    this.tagService.findAll().subscribe((data) => {
-      this.allTags=data;
-    });
   }
+
 }

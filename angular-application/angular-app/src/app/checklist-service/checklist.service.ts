@@ -27,11 +27,6 @@ export class ChecklistService {
     return this.http.get<Item>(this.itemsUrl+"/"+item.id);
   }
 
-  handelResponse(res: Response){
-    const data = res.json;
-    // do whatever you want
-    return data // or return your object
-}
 
   public save(checklist: Checklist) {
     return this.http.post<Checklist>(this.checklistsUrl, checklist);

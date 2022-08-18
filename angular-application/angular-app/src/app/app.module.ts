@@ -10,7 +10,6 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { ChecklistFormComponent } from './checklist-form/checklist-form.component';
 import { ChecklistService } from './checklist-service/checklist.service';
 import { ChecklistListComponent } from './checklist-list/checklist-list.component';
-import { TagService } from './checklist-service/tag.service';
 import { ItemService } from './checklist-service/item.service';
 
 
@@ -19,8 +18,8 @@ import { ItemService } from './checklist-service/item.service';
     AppComponent,
     UserListComponent,
     UserFormComponent,
-    ChecklistFormComponent,
-    ChecklistListComponent
+    ChecklistListComponent,
+    ChecklistFormComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +27,7 @@ import { ItemService } from './checklist-service/item.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService,ChecklistService,TagService,ItemService],
+  providers: [UserService,ChecklistService,ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
