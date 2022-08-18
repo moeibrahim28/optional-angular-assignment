@@ -34,7 +34,13 @@ public class ChecklistController {
         for (int i = 0; i < checklist.getItemList().size(); i++) {
             if (itemRepository.existsById(checklist.getItemList().get(i).getId())) {
                 Item item = checklist.getItemList().get(i);
-                item.getChecklists().add(newChecklist);
+                newChecklist.getItemList().add(item);
+            }
+            else{
+                Item item = new Item();
+                item.setName(checklist.getItemList().get(i).getName());
+
+                itemRepository.save(item);
                 newChecklist.getItemList().add(item);
             }
         }

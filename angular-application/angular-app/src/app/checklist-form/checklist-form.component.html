@@ -37,7 +37,7 @@
       <div class="form-group">
         <label for="tagsString">To enter different tags enter them below(for multiple tags serpate them by commas)</label>
         <input type="text" [(ngModel)]="tagsString" class="form-control" id="tagsString" name="tagsString"
-          placeholder="Enter extra tags seperated by commas" required #name="ngModel">
+          placeholder="Enter extra tags seperated by commas">
       </div>
 
       <table class="table table-bordered table-striped">
@@ -60,6 +60,12 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="form-group">
+        <label for="itemsString">To enter different items enter them below(for multiple tags serpate them by commas)</label>
+        <input type="text" [(ngModel)]="itemsString" class="form-control" id="itemsString" name="itemsString"
+          placeholder="Enter extra items seperated by commas">
+      </div>
 
       <button type="submit" [disabled]="!checklistForm.form.valid" class="btn btn-info">Submit</button>
     </form> 

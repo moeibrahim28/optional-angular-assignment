@@ -20,9 +20,6 @@ public class Checklist {
     @ElementCollection
     private List<String> tags = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "checklists_itemslists",
-            joinColumns = @JoinColumn(name = "checklists_id"),
-            inverseJoinColumns = @JoinColumn(name = "items_id"))
+    @ElementCollection
     private List<Item> itemList = new ArrayList<>();
 }
