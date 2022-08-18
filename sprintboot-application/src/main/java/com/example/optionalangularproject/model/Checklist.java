@@ -18,6 +18,12 @@ public class Checklist {
     private String name;
 
     @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "checklists_tags",
+            joinColumns = @JoinColumn(name = "checklists_id"),
+            inverseJoinColumns = @JoinColumn(name = "tags_id"))
+    private List<Tag> tagsList = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "checklists_itemslists",
             joinColumns = @JoinColumn(name = "checklists_id"),
             inverseJoinColumns = @JoinColumn(name = "items_id"))

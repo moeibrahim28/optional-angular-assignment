@@ -5,6 +5,8 @@ import { Checklist } from 'app/checklist-model/checklist';
 import { Item } from 'app/checklist-model/item';
 import { ItemService } from 'app/checklist-service/item.service';
 import { NotFoundError, of } from 'rxjs';
+import { TagService } from 'app/checklist-service/tag.service';
+import { Tag } from 'app/checklist-model/tag';
 
 @Component({
   selector: 'app-checklist-form',
@@ -14,20 +16,23 @@ import { NotFoundError, of } from 'rxjs';
 export class ChecklistFormComponent implements OnInit{
 
   items!: Item[];
+  allTags!: Tag[];
   checklist: Checklist;
   selectedItems: Item[] = new Array;
-  tags:String = "";
+  selectedTags:Tag[] = new Array;
 
   constructor(
     private route: ActivatedRoute, 
       private router: Router, 
-        private checklistService: ChecklistService) {
+        private checklistService: ChecklistService,
+        private tagService: TagService) {
     this.checklist = new Checklist();
   }
 
   onSubmit() {
     this.checklist.itemList = this.selectedItems;
-    // this.checklist.tagList = this.addTagsToChecklist(tags);
+    this.checklist.tagList = this.selectedTags;
+    console.log(this.checklist.tagList)
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
   }
 
@@ -37,12 +42,27 @@ export class ChecklistFormComponent implements OnInit{
     
   }
 
-  addTagsToChecklist(tags: string):string[] {
-    let tagsArray:string[] = new Array;
-    tagsArray = tags.split(",");
-    return tagsArray;
+  addTagsToChecklist(tag: Tag) {
+    this.findItem(tag)
+     this.selectedTags.push(this.findTag(tag));
+    
   }
   
+
+  findTag(tag:Tag):Tag{
+    
+   const foundTag = this.allTags.find((obj) => {
+    return obj.name === tag.name;
+  });
+  if(foundTag!==null){
+   return foundTag!;}
+   else {
+    let newTag:Tag = new Tag;
+    newTag.name = tag.name;
+    this.tagService.save(newTag);
+    return newTag
+   }
+  }
 
   findItem(item:Item):Item{
     console.log(item.id)
@@ -61,6 +81,10 @@ export class ChecklistFormComponent implements OnInit{
   ngOnInit() {
     this.checklistService.findAllItems().subscribe((data) => {
       this.items=data;
+    });
+    this.tagService.findAll().subscribe((data) => {
+      this.allTags=data;
+      console.log(this.allTags)
     });
   }
 }

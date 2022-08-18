@@ -1,8 +1,9 @@
 import { Item } from "./item";
+import { Tag } from "./tag";
 
 export class Checklist {
     id!: string;
     name!: string;
     itemList!: Item[];
-    tagList!: string[];
+    tagList!: Tag[];
 }

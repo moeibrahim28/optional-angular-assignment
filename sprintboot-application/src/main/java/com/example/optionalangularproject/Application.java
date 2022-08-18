@@ -1,8 +1,10 @@
 package com.example.optionalangularproject;
 
 import com.example.optionalangularproject.model.Item;
+import com.example.optionalangularproject.model.Tag;
 import com.example.optionalangularproject.model.User;
 import com.example.optionalangularproject.repositories.ItemRepository;
+import com.example.optionalangularproject.repositories.TagRepository;
 import com.example.optionalangularproject.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +22,7 @@ public class Application {
 
 
 	@Bean
-	CommandLineRunner init(UserRepository userRepository, ItemRepository itemRepository) {
+	CommandLineRunner init(UserRepository userRepository, ItemRepository itemRepository, TagRepository tagRepository) {
 		return args -> {
 			Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
 				User user = new User();
@@ -43,6 +45,14 @@ public class Application {
 				itemRepository.save(item);
 			});
 			itemRepository.findAll().forEach(System.out::println);
+
+			Stream.of("tag1", "tag2", "tag3", "tag4", "tag5").forEach(name -> {
+				Tag tag = new Tag();
+				tag.setName(name);
+				tagRepository.save(tag);
+			});
+			tagRepository.findAll().forEach(System.out::println);
+
 		};
 	}
 }
