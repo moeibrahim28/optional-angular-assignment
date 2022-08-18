@@ -27,8 +27,6 @@ export class ChecklistFormComponent implements OnInit{
     this.checklist.itemList = this.selectedItems;
     
     this.checklist.tags = this.addNewTagsToChecklist(this.tagsString);
-    
-    console.log(this.checklist)
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
    
   }
@@ -41,7 +39,6 @@ export class ChecklistFormComponent implements OnInit{
   addItemToList(item: Item) {
     this.findItem(item)
      this.selectedItems.push(this.findItem(item));
-    alert(item.name + " added to cart");
   }
 
   findItem(item:Item):Item{
