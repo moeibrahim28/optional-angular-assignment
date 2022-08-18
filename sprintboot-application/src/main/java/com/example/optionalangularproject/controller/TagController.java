@@ -22,7 +22,7 @@ public class TagController {
     }
 
     @GetMapping("/tags/{id}")
-    public Tag getItemByID(@PathVariable Long id) {
+    public Tag getTagByID(@PathVariable Long id) {
         return tagRepository.findById(id).get();
     }
 

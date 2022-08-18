@@ -5,7 +5,8 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Checklists</th>
+            <th scope="col">Checklist items</th>
+            <th scope="col">Tags</th>
           </tr>
         </thead>
         <tbody>
@@ -14,7 +15,9 @@
             <td>{{ checklist.name }}</td>
             
             <td><tr *ngFor="let item of checklist.itemList">{{ item.name }}</tr></td>
-        </tr>
+            <td><tr *ngFor="let tag of checklist.tagsList">{{ tag.name }}</tr></td>
+        
+          </tr>
          
         </tbody>
       </table>

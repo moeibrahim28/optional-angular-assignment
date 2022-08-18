@@ -16,6 +16,10 @@ export class TagService {
     return this.http.get<Tag[]>(this.tagsUrl);
   }
 
+  public findTag(tag:Tag): Observable<Tag> {
+    return this.http.get<Tag>(this.tagsUrl+"/"+tag.id);
+  }
+
   public save(tag: Tag) {
     return this.http.post<Tag>(this.tagsUrl, tag);
   }

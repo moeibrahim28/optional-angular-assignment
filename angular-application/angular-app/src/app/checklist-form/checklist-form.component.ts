@@ -31,8 +31,8 @@ export class ChecklistFormComponent implements OnInit{
 
   onSubmit() {
     this.checklist.itemList = this.selectedItems;
-    this.checklist.tagList = this.selectedTags;
-    console.log(this.checklist.tagList)
+    this.checklist.tagsList = this.selectedTags;
+    console.log(this.checklist)
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
   }
 
@@ -43,34 +43,26 @@ export class ChecklistFormComponent implements OnInit{
   }
 
   addTagsToChecklist(tag: Tag) {
-    this.findItem(tag)
+    this.findTag(tag)
      this.selectedTags.push(this.findTag(tag));
     
   }
   
 
   findTag(tag:Tag):Tag{
-    
-   const foundTag = this.allTags.find((obj) => {
-    return obj.name === tag.name;
-  });
-  if(foundTag!==null){
-   return foundTag!;}
-   else {
-    let newTag:Tag = new Tag;
-    newTag.name = tag.name;
-    this.tagService.save(newTag);
-    return newTag
-   }
+    const foundTag = this.allTags.find((obj) => {
+      return obj.id === tag.id;
+    });
+    console.log(foundTag)
+    return foundTag!;
+
   }
 
   findItem(item:Item):Item{
-    console.log(item.id)
     
    const foundItem = this.items.find((obj) => {
     return obj.id === item.id;
   });
-  console.log(foundItem)
    return foundItem!;
   }
 
@@ -84,7 +76,6 @@ export class ChecklistFormComponent implements OnInit{
     });
     this.tagService.findAll().subscribe((data) => {
       this.allTags=data;
-      console.log(this.allTags)
     });
   }
 }
