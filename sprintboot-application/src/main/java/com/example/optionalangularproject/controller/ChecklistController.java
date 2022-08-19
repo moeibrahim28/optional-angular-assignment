@@ -2,8 +2,10 @@ package com.example.optionalangularproject.controller;
 
 import com.example.optionalangularproject.model.Checklist;
 import com.example.optionalangularproject.model.Item;
+import com.example.optionalangularproject.model.User;
 import com.example.optionalangularproject.repositories.ChecklistRepository;
 import com.example.optionalangularproject.repositories.ItemRepository;
+import com.example.optionalangularproject.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,9 @@ public class ChecklistController {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
 
     @GetMapping("/checklists")
     public List<Checklist> getChecklists() {
@@ -30,6 +35,9 @@ public class ChecklistController {
     @PostMapping("/checklists")
     void addChecklist(@RequestBody Checklist checklist) {
         Checklist newChecklist = new Checklist();
+
+            User user = checklist.getUser();
+
         newChecklist.setName(checklist.getName());
         for (int i = 0; i < checklist.getItemList().size(); i++) {
             if (itemRepository.existsById(checklist.getItemList().get(i).getId())) {
@@ -46,6 +54,8 @@ public class ChecklistController {
         for(int i =0; i<checklist.getTags().size();i++){
             newChecklist.getTags().add(checklist.getTags().get(i));
         }
+        newChecklist.setUser(user);
+        user.getChecklists().add(newChecklist);
         checklistRepository.save(newChecklist);
     }
 }

@@ -1,9 +1,13 @@
 package com.example.optionalangularproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Users")
 @Table(name = "\"Users\"")
@@ -16,6 +20,10 @@ public class User {
     private long id;
     private String name;
     private String email;
+
+
+    @OneToMany(mappedBy = "user")
+    private List<Checklist> checklists = new ArrayList<>();
 
     // standard constructors / setters / getters / toString
 }

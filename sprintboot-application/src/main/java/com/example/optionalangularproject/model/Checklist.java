@@ -1,5 +1,7 @@
 package com.example.optionalangularproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +18,9 @@ public class Checklist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+
+    @ManyToOne
+    private User user;
 
     @ElementCollection
     private List<String> tags = new ArrayList<>();

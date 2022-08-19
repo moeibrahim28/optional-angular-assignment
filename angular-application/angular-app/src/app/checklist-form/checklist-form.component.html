@@ -26,6 +26,12 @@
   <div class="float-child-left">
 
     <form (ngSubmit)="onSubmit()" #checklistForm="ngForm">
+      <select (change)="updateUser($event)">
+        <option value="default">----</option>
+        <option *ngFor="let user of users" [value]="user.id">
+            {{user.name}}
+        </option>
+    </select>
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" [(ngModel)]="checklist.name" class="form-control" id="name" name="name"

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChecklistService } from 'app/checklist-service/checklist.service';
 import { Checklist } from 'app/checklist-model/checklist';
 import { Item } from 'app/checklist-model/item';
+import { User } from 'app/model/user';
+import { UserService } from 'app/service/user.service';
 
 @Component({
   selector: 'app-checklist-form',
@@ -12,22 +14,26 @@ import { Item } from 'app/checklist-model/item';
 export class ChecklistFormComponent implements OnInit {
 
   items!: Item[];
+  users!: User[];
   checklist: Checklist;
   selectedItems: Item[] = new Array;
   tagsString: string = "";
   itemsString: string = "";
   newItems: Item[] = new Array;
+  selectedUser!: User;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private checklistService: ChecklistService) {
+    private checklistService: ChecklistService,
+    private userService: UserService) {
     this.checklist = new Checklist();
   }
 
   onSubmit() {
-    this.checklist.itemList = this.selectedItems;
 
+    this.checklist.itemList = this.selectedItems;
+    this.checklist.user = this.selectedUser
     this.checklist.tags = this.addNewTagsToChecklist(this.tagsString);
     this.addNewItemsToChecklist(this.itemsString);
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
@@ -67,10 +73,23 @@ export class ChecklistFormComponent implements OnInit {
     this.router.navigate(['/checklists']);
   }
 
+  updateUser(e: any) {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].id === parseInt(e.target.value)) {
+        this.selectedUser = this.users[i]
+      }
+    }
+  }
+
   ngOnInit() {
     this.checklistService.findAllItems().subscribe((data) => {
       this.items = data;
     });
+
+    this.userService.findAll().subscribe((data) => {
+      this.users = data;
+    });
+
   }
 
 }
