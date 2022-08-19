@@ -26,18 +26,22 @@
   <div class="float-child-left">
 
     <form (ngSubmit)="onSubmit()" #checklistForm="ngForm">
+      <label for="user">Pick a user to create a checklist for&nbsp;</label>
       <select (change)="updateUser($event)">
         <option value="default">----</option>
         <option *ngFor="let user of users" [value]="user.id">
             {{user.name}}
         </option>
     </select>
+    <div class="alert alert-danger">User selection is required</div>
+
+    <br>
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">Checklist name</label>
         <input type="text" [(ngModel)]="checklist.name" class="form-control" id="name" name="name"
-          placeholder="Enter your name" required #name="ngModel">
+          placeholder="Enter the name for the checklist" required #name="ngModel">
       </div>
-      <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Checklist name is required</div>
 
 
       <div class="form-group">
