@@ -45,6 +45,10 @@ export class ChecklistFormComponent implements OnInit {
     return tagsArray;
   }
 
+  removeLastItemAdded() {
+    this.selectedItems.pop()
+  }
+
   addNewItemsToChecklist(itemsString: string) {
     let itemsStringArray: string[] = itemsString.split(",");
     let itemsArray: Item[] = new Array;

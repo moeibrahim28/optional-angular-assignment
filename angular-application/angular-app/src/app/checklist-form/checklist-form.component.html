@@ -21,11 +21,14 @@
         </tr>
       </tbody>
     </table>
-  </div>
+    <button (click)="removeLastItemAdded();">Remove last item added</button>
+    <button onClick="window.location.reload();">Reset</button>
+    </div>
 
   <div class="float-child-left">
 
     <form (ngSubmit)="onSubmit()" #checklistForm="ngForm">
+      
       <label for="user">Pick a user to create a checklist for&nbsp;</label>
       <select (change)="updateUser($event)">
         <option value="default">----</option>
