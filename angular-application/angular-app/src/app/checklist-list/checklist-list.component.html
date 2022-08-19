@@ -8,6 +8,7 @@
           <th scope="col">Name</th>
           <th scope="col">Checklist items</th>
           <th scope="col">Tags</th>
+          <th scope="col">Download TXT</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +23,7 @@
         <td>
           <tr *ngFor="let tag of checklist.tags">{{ tag }}</tr>
         </td>
+        <td><button type="button" (click)="download_txt(checklist)"> Download TXT</button></td>
 
         </tr>
 
