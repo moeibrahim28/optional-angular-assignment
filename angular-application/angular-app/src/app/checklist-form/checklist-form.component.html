@@ -56,11 +56,35 @@
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
           <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Name</th>
+            <th scope="col">Checklist items</th>
+            <th scope="col">Add all items</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let checklist of allChecklists">
+            <td>{{ checklist.id }}</td>
+            <td>{{ checklist.user.name }}</td>
+            <td>{{ checklist.name }}</td>
+            
+            <td><tr *ngFor="let item of checklist.itemList">{{ item.name }}</tr></td>
+            <td><button type="button" (click)="addItemsFromOtherChecklist(checklist)"> ADD ITEMS TO LIST</button></td>
+         
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
 
 
             <th scope="col">Item ID</th>
             <th scope="col">Item Name</th>
-            <th scope="col">Add</th>
+            <th scope="col">Add item</th>
           </tr>
         </thead>
 
@@ -69,7 +93,7 @@
 
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
-            <td><button type="button" (click)="addItemToList(item)"> ADD TO LIST {{item.name}}</button></td>
+            <td><button type="button" (click)="addItemToList(item)"> ADD {{item.name}} TO LIST </button></td>
           </tr>
         </tbody>
       </table>

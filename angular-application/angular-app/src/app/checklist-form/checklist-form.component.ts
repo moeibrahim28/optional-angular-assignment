@@ -21,6 +21,7 @@ export class ChecklistFormComponent implements OnInit {
   itemsString: string = "";
   newItems: Item[] = new Array;
   selectedUser!: User;
+  allChecklists!: Checklist[];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,8 +32,9 @@ export class ChecklistFormComponent implements OnInit {
   }
 
   onSubmit() {
-
-    this.checklist.itemList = this.selectedItems;
+    if (this.selectedItems.length !== 0) {
+      this.checklist.itemList = this.selectedItems;
+    }
     this.checklist.user = this.selectedUser
     this.checklist.tags = this.addNewTagsToChecklist(this.tagsString);
     this.addNewItemsToChecklist(this.itemsString);
@@ -50,15 +52,23 @@ export class ChecklistFormComponent implements OnInit {
   }
 
   addNewItemsToChecklist(itemsString: string) {
+    if(this.itemsString.length>0){
     let itemsStringArray: string[] = itemsString.split(",");
     let itemsArray: Item[] = new Array;
     for (let i = 0; i < itemsStringArray.length; i++) {
       let newItem: Item = new Item
       newItem.name = itemsStringArray[i]
       this.checklist.itemList.push(newItem)
-
+    }
     }
   }
+
+  addItemsFromOtherChecklist(otherChecklist: Checklist) {
+    for (let i = 0; i < otherChecklist.itemList.length; i++) {
+      this.selectedItems.push(otherChecklist.itemList[i])
+    }
+  }
+
 
   addItemToList(item: Item) {
     this.findItem(item)
@@ -88,6 +98,10 @@ export class ChecklistFormComponent implements OnInit {
   ngOnInit() {
     this.checklistService.findAllItems().subscribe((data) => {
       this.items = data;
+    });
+
+    this.checklistService.findAll().subscribe((data) => {
+      this.allChecklists = data;
     });
 
     this.userService.findAll().subscribe((data) => {
