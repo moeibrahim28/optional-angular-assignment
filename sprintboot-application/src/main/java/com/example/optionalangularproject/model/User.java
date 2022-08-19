@@ -21,7 +21,7 @@ public class User {
     private String name;
     private String email;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Checklist> checklists = new ArrayList<>();
 
