@@ -52,14 +52,14 @@ export class ChecklistFormComponent implements OnInit {
   }
 
   addNewItemsToChecklist(itemsString: string) {
-    if(this.itemsString.length>0){
-    let itemsStringArray: string[] = itemsString.split(",");
-    let itemsArray: Item[] = new Array;
-    for (let i = 0; i < itemsStringArray.length; i++) {
-      let newItem: Item = new Item
-      newItem.name = itemsStringArray[i]
-      this.checklist.itemList.push(newItem)
-    }
+    if (this.itemsString.length > 0) {
+      let itemsStringArray: string[] = itemsString.split(",");
+      let itemsArray: Item[] = new Array;
+      for (let i = 0; i < itemsStringArray.length; i++) {
+        let newItem: Item = new Item
+        newItem.name = itemsStringArray[i]
+        this.checklist.itemList.push(newItem)
+      }
     }
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Item } from '../checklist-model/item';
-import {Observable,of, from } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 
 @Injectable()
 export class ItemService {

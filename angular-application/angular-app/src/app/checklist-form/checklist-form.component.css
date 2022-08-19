@@ -8,14 +8,14 @@
     left: 0;
     margin-left: auto;
     padding: 20px;
-}  
+}
 
 .float-child-right {
-    
+
     width: 15%;
     padding: 20px;
-    position:fixed;
+    position: fixed;
     right: 0;
     margin-right: auto;
 
-}  
+}

@@ -27,7 +27,7 @@ import { ItemService } from './checklist-service/item.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService,ChecklistService,ItemService],
+  providers: [UserService, ChecklistService, ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

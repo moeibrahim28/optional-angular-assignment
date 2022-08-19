@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Checklist } from '../checklist-model/checklist';
-import {Observable,of, from, map } from 'rxjs';
+import { Observable, of, from, map } from 'rxjs';
 import { Item } from 'app/checklist-model/item';
 import { ItemService } from './item.service';
 
@@ -23,8 +23,8 @@ export class ChecklistService {
     return this.http.get<Item[]>(this.itemsUrl);
   }
 
-  public findItem(item:Item): Observable<Item> {
-    return this.http.get<Item>(this.itemsUrl+"/"+item.id);
+  public findItem(item: Item): Observable<Item> {
+    return this.http.get<Item>(this.itemsUrl + "/" + item.id);
   }
 
 

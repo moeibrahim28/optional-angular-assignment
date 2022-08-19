@@ -17,9 +17,8 @@ export class ChecklistListComponent implements OnInit {
   }
 
   onSubmit() {
-    
     this.searchChecklists = this.findChecklistWithTag(this.checklists)
-    if(this.searchChecklists.length===0){
+    if (this.searchChecklists.length === 0) {
       alert("No checklists found with this tag")
     }
   }
