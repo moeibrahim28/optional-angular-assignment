@@ -39,7 +39,6 @@ public class ChecklistController {
             else{
                 Item item = new Item();
                 item.setName(checklist.getItemList().get(i).getName());
-
                 itemRepository.save(item);
                 newChecklist.getItemList().add(item);
             }

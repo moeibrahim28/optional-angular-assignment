@@ -9,58 +9,58 @@ import { Item } from 'app/checklist-model/item';
   templateUrl: './checklist-form.component.html',
   styleUrls: ['./checklist-form.component.css']
 })
-export class ChecklistFormComponent implements OnInit{
+export class ChecklistFormComponent implements OnInit {
 
   items!: Item[];
   checklist: Checklist;
   selectedItems: Item[] = new Array;
-  tagsString: string="";
-  itemsString: string="";
+  tagsString: string = "";
+  itemsString: string = "";
   newItems: Item[] = new Array;
 
   constructor(
-    private route: ActivatedRoute, 
-      private router: Router, 
-        private checklistService: ChecklistService) {
+    private route: ActivatedRoute,
+    private router: Router,
+    private checklistService: ChecklistService) {
     this.checklist = new Checklist();
   }
 
   onSubmit() {
     this.checklist.itemList = this.selectedItems;
-    
+
     this.checklist.tags = this.addNewTagsToChecklist(this.tagsString);
     this.addNewItemsToChecklist(this.itemsString);
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
-   
+
   }
 
-  addNewTagsToChecklist(tagsString: string):string[] {
+  addNewTagsToChecklist(tagsString: string): string[] {
     let tagsArray: string[] = tagsString.split(",");
     return tagsArray;
   }
 
   addNewItemsToChecklist(itemsString: string) {
     let itemsStringArray: string[] = itemsString.split(",");
-    let itemsArray:Item[] = new Array;
-    for(let i=0;i<itemsStringArray.length;i++){
-       let newItem:Item = new Item
-        newItem.name=itemsStringArray[i]
+    let itemsArray: Item[] = new Array;
+    for (let i = 0; i < itemsStringArray.length; i++) {
+      let newItem: Item = new Item
+      newItem.name = itemsStringArray[i]
       this.checklist.itemList.push(newItem)
-      
+
     }
   }
 
   addItemToList(item: Item) {
     this.findItem(item)
-     this.selectedItems.push(this.findItem(item));
+    this.selectedItems.push(this.findItem(item));
   }
 
-  findItem(item:Item):Item{
-    
-   const foundItem = this.items.find((obj) => {
-    return obj.id === item.id;
-  });
-   return foundItem!;
+  findItem(item: Item): Item {
+
+    const foundItem = this.items.find((obj) => {
+      return obj.id === item.id;
+    });
+    return foundItem!;
   }
 
   gotoChecklistList() {
@@ -69,7 +69,7 @@ export class ChecklistFormComponent implements OnInit{
 
   ngOnInit() {
     this.checklistService.findAllItems().subscribe((data) => {
-      this.items=data;
+      this.items = data;
     });
   }
 

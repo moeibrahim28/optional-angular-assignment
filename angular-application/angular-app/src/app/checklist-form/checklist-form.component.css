@@ -5,7 +5,8 @@
 
 .float-child-left {
     width: 100%;
-    float: left;
+    left: 0;
+    margin-left: auto;
     padding: 20px;
 }  
 
@@ -15,5 +16,6 @@
     padding: 20px;
     position:fixed;
     right: 0;
+    margin-right: auto;
 
 }  
