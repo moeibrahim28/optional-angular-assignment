@@ -22,6 +22,7 @@ export class ChecklistFormComponent implements OnInit {
   newItems: Item[] = new Array;
   selectedUser!: User;
   allChecklists!: Checklist[];
+  isChecked:boolean[] = new Array;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,8 @@ export class ChecklistFormComponent implements OnInit {
     this.checklist.user = this.selectedUser
     this.checklist.tags = this.addNewTagsToChecklist(this.tagsString);
     this.addNewItemsToChecklist(this.itemsString);
+    this.checklist.itemList.forEach(() => this.isChecked.push(false))
+    this.checklist.isChecked=this.isChecked
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
 
   }
@@ -49,6 +52,14 @@ export class ChecklistFormComponent implements OnInit {
 
   removeLastItemAdded() {
     this.selectedItems.pop()
+  }
+
+  removeItemFromCart(index:number) {
+    this.selectedItems.splice(index,1)
+  }
+
+  clearCart(){
+    this.selectedItems=[]
   }
 
   addNewItemsToChecklist(itemsString: string) {

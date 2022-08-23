@@ -9,6 +9,7 @@
           <th scope="col">Checklist items</th>
           <th scope="col">Tags</th>
           <th scope="col">Download TXT</th>
+          <th scope="col">Save Changes</th>
         </tr>
       </thead>
       <tbody>
@@ -18,17 +19,25 @@
           <td>{{ checklist.name }}</td>
 
           <td>
-        <tr *ngFor="let item of checklist.itemList">{{ item.name }}</tr>
+        <tr *ngFor="let item of checklist.itemList; let i = index">
+          {{ item.name }}  <input type="checkbox" [(ngModel)]="checklist.isChecked[i]"> 
+      
+        </tr>
         </td>
         <td>
           <tr *ngFor="let tag of checklist.tags">{{ tag }}</tr>
         </td>
-        <td><button type="button" (click)="download_txt(checklist)"> Download TXT</button></td>
-
+        <td>
+          <button type="button" (click)="download_txt(checklist)"> Download TXT</button>
+        </td>
+        <td>
+          <button type="button" (click)="update(checklist)"> Save Changes</button>
+        </td>
         </tr>
 
       </tbody>
     </table>
+
     <form (ngSubmit)="onSubmit()" #checklistForm="ngForm">
       <div class="form-group">
         <label for="tagsString">Tag to Search</label>

@@ -56,6 +56,16 @@ public class ChecklistController {
         }
         newChecklist.setUser(user);
         user.getChecklists().add(newChecklist);
+        newChecklist.setIsChecked(checklist.getIsChecked());
         checklistRepository.save(newChecklist);
+    }
+
+    @PutMapping("/checklists/{id}")
+    void update(@RequestBody Checklist checklist){
+        if(checklistRepository.existsById(checklist.getId())){
+            Checklist checklist1 = checklistRepository.findById(checklist.getId()).get();
+            checklist1=checklist;
+            checklistRepository.save(checklist1);
+        }
     }
 }

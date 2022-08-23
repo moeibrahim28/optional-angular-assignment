@@ -27,4 +27,7 @@ public class Checklist {
 
     @ElementCollection
     private List<Item> itemList = new ArrayList<>();
+
+    @ElementCollection
+    private List<Boolean>  isChecked= new ArrayList<>();
 }

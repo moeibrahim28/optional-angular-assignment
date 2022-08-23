@@ -7,4 +7,5 @@ export class Checklist {
     user!: User;
     itemList!: Item[];
     tags!: string[];
+    isChecked!:boolean[];
 }

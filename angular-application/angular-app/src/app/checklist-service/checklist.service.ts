@@ -27,6 +27,10 @@ export class ChecklistService {
     return this.http.get<Item>(this.itemsUrl + "/" + item.id);
   }
 
+  public update(checklist: Checklist) {
+    alert("Changes have been saved")
+    return this.http.put<Checklist>(this.checklistsUrl+"/"+checklist.id, checklist).subscribe()
+  }
 
   public save(checklist: Checklist) {
     return this.http.post<Checklist>(this.checklistsUrl, checklist);

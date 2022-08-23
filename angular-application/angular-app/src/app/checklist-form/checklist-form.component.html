@@ -10,19 +10,21 @@
 
           <th scope="col">Item ID</th>
           <th scope="col">Item Name</th>
+          <th scope="col">Remove</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let item of selectedItems">
+        <tr *ngFor="let item of selectedItems; let i = index">
 
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
+          <td><button type="button" (click)="removeItemFromCart(i)"> X </button></td>
+          
         </tr>
       </tbody>
     </table>
-    <button (click)="removeLastItemAdded();">Remove last item added</button>
-    <button onClick="window.location.reload();">Reset</button>
+    <button (click)="clearCart();">Clear Cart</button>
   </div>
 
   <div class="float-child-left">

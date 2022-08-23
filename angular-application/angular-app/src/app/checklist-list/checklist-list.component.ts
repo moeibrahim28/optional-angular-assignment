@@ -10,8 +10,10 @@ import { ChecklistService } from 'app/checklist-service/checklist.service';
 export class ChecklistListComponent implements OnInit {
 
   checklists!: Checklist[];
+  // checklistsIsChecked!: [boolean[]];
   searchChecklists!: Checklist[];
   tagsString: string = "";
+
 
   constructor(private checklistService: ChecklistService) {
   }
@@ -21,6 +23,10 @@ export class ChecklistListComponent implements OnInit {
     if (this.searchChecklists.length === 0) {
       alert("No checklists found with this tag")
     }
+  }
+
+  update(checklist:Checklist){
+    this.checklistService.update(checklist)
   }
 
   download_txt(checkList: Checklist) {
@@ -78,6 +84,7 @@ export class ChecklistListComponent implements OnInit {
     this.checklistService.findAll().subscribe(data => {
       this.checklists = data;
     });
+    // this.checklists.forEach(checklist => this.checklistsIsChecked.push(checklist.isChecked))
   }
 
 }
