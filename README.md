@@ -9,3 +9,9 @@
 4. Navigate into the angular-app folder within angular-application and enter
    the following command : ng serve --open
 
+//NEW FEATURES TO ADD
+-progress on each checklist for users
+-checkboxes to show completion
+-login
+   -shared checklists
+-check event emitters
