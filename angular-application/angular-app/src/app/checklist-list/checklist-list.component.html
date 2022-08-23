@@ -7,11 +7,13 @@
           <th scope="col">User</th>
           <th scope="col">Name</th>
           <th scope="col">Checklist items</th>
+          <th scope="col">Progress</th>
           <th scope="col">Tags</th>
           <th scope="col">Download TXT</th>
           <th scope="col">Save Changes</th>
         </tr>
-      </thead>
+        
+        </thead>
       <tbody>
         <tr *ngFor="let checklist of checklists">
           <td>{{ checklist.id }}</td>
@@ -24,9 +26,15 @@
       
         </tr>
         </td>
+        <td><circle-progress
+          [percent]="checklist.progress*100"
+          
+        ></circle-progress></td>
+        
         <td>
           <tr *ngFor="let tag of checklist.tags">{{ tag }}</tr>
         </td>
+       
         <td>
           <button type="button" (click)="download_txt(checklist)"> Download TXT</button>
         </td>
@@ -34,6 +42,10 @@
           <button type="button" (click)="update(checklist)"> Save Changes</button>
         </td>
         </tr>
+
+        
+        
+      
 
       </tbody>
     </table>

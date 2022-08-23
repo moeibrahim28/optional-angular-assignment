@@ -57,6 +57,7 @@ public class ChecklistController {
         newChecklist.setUser(user);
         user.getChecklists().add(newChecklist);
         newChecklist.setIsChecked(checklist.getIsChecked());
+        newChecklist.setProgress(0.0);
         checklistRepository.save(newChecklist);
     }
 

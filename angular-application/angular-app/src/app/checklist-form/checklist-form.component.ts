@@ -41,6 +41,7 @@ export class ChecklistFormComponent implements OnInit {
     this.addNewItemsToChecklist(this.itemsString);
     this.checklist.itemList.forEach(() => this.isChecked.push(false))
     this.checklist.isChecked=this.isChecked
+    this.checklist.progress=0;
     this.checklistService.save(this.checklist).subscribe(result => this.gotoChecklistList());
 
   }

@@ -10,7 +10,6 @@ import { ChecklistService } from 'app/checklist-service/checklist.service';
 export class ChecklistListComponent implements OnInit {
 
   checklists!: Checklist[];
-  // checklistsIsChecked!: [boolean[]];
   searchChecklists!: Checklist[];
   tagsString: string = "";
 
@@ -26,7 +25,9 @@ export class ChecklistListComponent implements OnInit {
   }
 
   update(checklist:Checklist){
+    checklist.progress = checklist.isChecked.filter(value => value ===true).length / checklist.isChecked.length
     this.checklistService.update(checklist)
+    console.log(checklist)
   }
 
   download_txt(checkList: Checklist) {

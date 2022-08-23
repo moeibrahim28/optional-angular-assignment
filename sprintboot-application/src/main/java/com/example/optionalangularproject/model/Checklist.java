@@ -18,6 +18,7 @@ public class Checklist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    private double progress;
 
     @ManyToOne
     private User user;

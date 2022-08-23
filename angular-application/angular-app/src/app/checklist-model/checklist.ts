@@ -8,4 +8,5 @@ export class Checklist {
     itemList!: Item[];
     tags!: string[];
     isChecked!:boolean[];
+    progress!:number;
 }
