@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../model/user';
-import {Observable,of, from } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 
 @Injectable()
 export class UserService {
-
   private usersUrl: string;
 
   constructor(private http: HttpClient) {

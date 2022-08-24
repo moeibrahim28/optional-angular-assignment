@@ -9,11 +9,11 @@ const routes: Routes = [
   { path: 'users', component: UserListComponent },
   { path: 'adduser', component: UserFormComponent },
   { path: 'addchecklist', component: ChecklistFormComponent },
-  { path: 'checklists', component: ChecklistListComponent }
+  { path: 'checklists', component: ChecklistListComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

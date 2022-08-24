@@ -6,8 +6,6 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
         <tr>
-
-
           <th scope="col">Item ID</th>
           <th scope="col">Item Name</th>
           <th scope="col">Remove</th>
@@ -16,49 +14,63 @@
 
       <tbody>
         <tr *ngFor="let item of selectedItems; let i = index">
-
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
-          <td><button type="button" (click)="removeItemFromCart(i)"> X </button></td>
-          
+          <td>
+            <button type="button" (click)="removeItemFromCart(i)">X</button>
+          </td>
         </tr>
       </tbody>
     </table>
-    <button (click)="clearCart();">Clear Cart</button>
+    <button (click)="clearCart()">Clear Cart</button>
   </div>
 
   <div class="float-child-left">
-
     <form (ngSubmit)="onSubmit()" #checklistForm="ngForm">
-
       <label for="user">Pick a user to create a checklist for&nbsp;</label>
       <select (change)="updateUser($event)">
         <option value="default">----</option>
         <option *ngFor="let user of users" [value]="user.id">
-          {{user.name}}
+          {{ user.name }}
         </option>
       </select>
       <div class="alert alert-danger">User selection is required</div>
 
       <div class="form-group">
         <label for="name">Checklist name</label>
-        <input type="text" [(ngModel)]="checklist.name" class="form-control" id="name" name="name"
-          placeholder="Enter the name for the checklist" required #name="ngModel">
+        <input
+          type="text"
+          [(ngModel)]="checklist.name"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Enter the name for the checklist"
+          required
+          #name="ngModel"
+        />
       </div>
-      <div [hidden]="!name.pristine" class="alert alert-danger">Checklist name is required</div>
-
+      <div [hidden]="!name.pristine" class="alert alert-danger">
+        Checklist name is required
+      </div>
 
       <div class="form-group">
-        <label for="tagsString">To enter different tags enter them below(for multiple tags serpate them by
-          commas)</label>
-        <input type="text" [(ngModel)]="tagsString" class="form-control" id="tagsString" name="tagsString"
-          placeholder="Enter extra tags seperated by commas">
+        <label for="tagsString"
+          >To enter different tags enter them below(for multiple tags serpate
+          them by commas)</label
+        >
+        <input
+          type="text"
+          [(ngModel)]="tagsString"
+          class="form-control"
+          id="tagsString"
+          name="tagsString"
+          placeholder="Enter extra tags seperated by commas"
+        />
       </div>
       <label>Popular Item List's</label>
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
           <tr>
-
             <th scope="col">Checklist items</th>
             <th scope="col">Add all items</th>
           </tr>
@@ -66,20 +78,27 @@
         <tbody>
           <tr *ngFor="let checklist of allChecklists">
             <td>
-          <tr *ngFor="let item of checklist.itemList">{{ item.name }}</tr>
-          </td>
-          <td><button type="button" (click)="addItemsFromOtherChecklist(checklist)"> ADD ITEMS TO LIST</button></td>
-
+              <tr *ngFor="let item of checklist.itemList">
+                {{
+                  item.name
+                }}
+              </tr>
+            </td>
+            <td>
+              <button
+                type="button"
+                (click)="addItemsFromOtherChecklist(checklist)"
+              >
+                ADD ITEMS TO LIST
+              </button>
+            </td>
           </tr>
-
         </tbody>
       </table>
 
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
           <tr>
-
-
             <th scope="col">Item ID</th>
             <th scope="col">Item Name</th>
             <th scope="col">Add item</th>
@@ -88,22 +107,39 @@
 
         <tbody>
           <tr *ngFor="let item of items">
-
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
-            <td><button type="button" (click)="addItemToList(item)"> ADD {{item.name}} TO LIST </button></td>
+            <td>
+              <button type="button" (click)="addItemToList(item)">
+                ADD {{ item.name }} TO LIST
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
 
       <div class="form-group">
-        <label for="itemsString">To enter different items enter them below(for multiple tags serpate them by
-          commas)</label>
-        <input type="text" [(ngModel)]="itemsString" class="form-control" id="itemsString" name="itemsString"
-          placeholder="Enter extra items seperated by commas">
+        <label for="itemsString"
+          >To enter different items enter them below(for multiple tags serpate
+          them by commas)</label
+        >
+        <input
+          type="text"
+          [(ngModel)]="itemsString"
+          class="form-control"
+          id="itemsString"
+          name="itemsString"
+          placeholder="Enter extra items seperated by commas"
+        />
       </div>
 
-      <button type="submit" [disabled]="!checklistForm.form.valid" class="btn btn-info">Submit</button>
+      <button
+        type="submit"
+        [disabled]="!checklistForm.form.valid"
+        class="btn btn-info"
+      >
+        Submit
+      </button>
     </form>
   </div>
 </div>

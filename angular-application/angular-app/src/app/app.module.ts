@@ -14,15 +14,13 @@ import { ItemService } from './checklist-service/item.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     UserFormComponent,
     ChecklistListComponent,
-    ChecklistFormComponent
-    
+    ChecklistFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,14 +30,15 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     BrowserAnimationsModule,
     NgCircleProgressModule.forRoot({
       radius: 50,
-      "titleFontSize": "15",
+      titleFontSize: '15',
       outerStrokeWidth: 10,
       innerStrokeWidth: 5,
-      outerStrokeColor: "#0061ff",
-      innerStrokeColor: "#74a7fe",
-      animationDuration: 400})
+      outerStrokeColor: '#0061ff',
+      innerStrokeColor: '#74a7fe',
+      animationDuration: 400,
+    }),
   ],
   providers: [UserService, ChecklistService, ItemService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

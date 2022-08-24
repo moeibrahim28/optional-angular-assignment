@@ -5,7 +5,6 @@ import { Observable, of, from } from 'rxjs';
 
 @Injectable()
 export class ItemService {
-
   private itemsUrl: string;
 
   constructor(private http: HttpClient) {

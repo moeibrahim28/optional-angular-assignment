@@ -8,9 +8,8 @@ describe('ChecklistFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChecklistFormComponent ]
-    })
-    .compileComponents();
+      declarations: [ChecklistFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ChecklistFormComponent);
     component = fixture.componentInstance;

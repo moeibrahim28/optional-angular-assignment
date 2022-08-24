@@ -1,21 +1,19 @@
 .float-container {
-    border: 3px solid #fff;
-    padding: 20px;
+  border: 3px solid #fff;
+  padding: 20px;
 }
 
 .float-child-left {
-    width: 100%;
-    left: 0;
-    margin-left: auto;
-    padding: 20px;
+  width: 100%;
+  left: 0;
+  margin-left: auto;
+  padding: 20px;
 }
 
 .float-child-right {
-
-    width: 15%;
-    padding: 20px;
-    position: fixed;
-    right: 0;
-    margin-right: auto;
-
+  width: 15%;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  margin-right: auto;
 }
