@@ -20,6 +20,7 @@ public class Checklist {
     private String name;
     private double progress;
 
+    @JsonIgnoreProperties("checklists")
     @ManyToOne
     private User user;
 
@@ -27,8 +28,12 @@ public class Checklist {
     private List<String> tags = new ArrayList<>();
 
     @ElementCollection
-    private List<Item> itemList = new ArrayList<>();
-
-    @ElementCollection
     private List<Boolean>  isChecked= new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "checklists_itemsLists",
+            joinColumns = @JoinColumn(name = "checklist_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
+    List<Item> itemList=new ArrayList<>();
 }

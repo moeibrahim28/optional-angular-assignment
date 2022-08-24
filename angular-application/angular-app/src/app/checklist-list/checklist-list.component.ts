@@ -25,6 +25,8 @@ export class ChecklistListComponent implements OnInit {
   }
 
   update(checklist:Checklist){
+
+    console.log(checklist)
     checklist.progress = (checklist.isChecked.filter(value => value ===true).length / checklist.isChecked.length)*100
     this.checklistService.update(checklist)
   }
@@ -84,6 +86,7 @@ export class ChecklistListComponent implements OnInit {
     this.checklistService.findAll().subscribe(data => {
       this.checklists = data;
     });
+    console.log(this.checklists)
     }
 
 }

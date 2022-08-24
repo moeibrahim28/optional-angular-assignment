@@ -21,8 +21,8 @@ public class User {
     private String name;
     private String email;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
+
+    @ElementCollection
     private List<Checklist> checklists = new ArrayList<>();
 
     // standard constructors / setters / getters / toString

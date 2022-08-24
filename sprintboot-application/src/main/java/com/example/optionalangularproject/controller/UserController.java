@@ -1,5 +1,6 @@
 package com.example.optionalangularproject.controller;
 
+import com.example.optionalangularproject.model.Checklist;
 import com.example.optionalangularproject.repositories.UserRepository;
 import com.example.optionalangularproject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,14 @@ public class UserController {
     @PostMapping("/users")
     void addUser(@RequestBody User user) {
         userRepository.save(user);
+    }
+
+    @PutMapping("/users/{id}")
+    void update(@RequestBody User user){
+        if(userRepository.existsById(user.getId())){
+            User user1 = userRepository.findById(user.getId()).get();
+            user1=user;
+            userRepository.save(user1);
+        }
     }
 }

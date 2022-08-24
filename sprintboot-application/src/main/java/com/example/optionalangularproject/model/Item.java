@@ -18,4 +18,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+
+//    @JsonIgnore
+//    @ManyToMany
+//    private List<Checklist> checklists = new ArrayList<>();
 }

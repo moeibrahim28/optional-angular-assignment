@@ -26,6 +26,9 @@ public class ChecklistController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserController userController;
+
 
     @GetMapping("/checklists")
     public List<Checklist> getChecklists() {
@@ -36,9 +39,10 @@ public class ChecklistController {
     void addChecklist(@RequestBody Checklist checklist) {
         Checklist newChecklist = new Checklist();
 
-            User user = checklist.getUser();
+            User user = userRepository.findById(checklist.getUser().getId()).get();
 
         newChecklist.setName(checklist.getName());
+        
         for (int i = 0; i < checklist.getItemList().size(); i++) {
             if (itemRepository.existsById(checklist.getItemList().get(i).getId())) {
                 Item item = checklist.getItemList().get(i);
