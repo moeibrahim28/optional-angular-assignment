@@ -68,6 +68,14 @@
           required="tagsString"
         />
       </div>
+      <label for="user">User Filter:&nbsp;</label>
+      <select (change)="updateUser($event)">
+        <option value="default">ALL USERS</option>
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.name }}
+        </option>
+      </select>
+      <br>
       <button
         type="submit"
         [disabled]="!checklistForm.form.valid"
