@@ -11,21 +11,13 @@ import { UserService } from 'app/service/user.service';
 })
 export class ChecklistListComponent implements OnInit {
   checklists!: Checklist[];
-  searchChecklists!: Checklist[];
-  tagsString: string = '';
-  users!: User[];
-  selectedUser?: User;
+
   
 
   constructor(private checklistService: ChecklistService,
     private userService: UserService) {}
 
-  onSubmit() {
-    this.searchChecklists = this.findChecklistWithTag(this.checklists);
-    if (this.searchChecklists.length === 0) {
-      alert('No checklists found with this tag');
-    }
-  }
+
 
   update(checklist: Checklist) {
     checklist.progress =
@@ -88,48 +80,12 @@ export class ChecklistListComponent implements OnInit {
     hiddenElement.click();
   }
 
-  updateUser(e: any) {
-    for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].id === parseInt(e.target.value)) {
-        this.selectedUser = this.users[i];
-      }
-    }
-    let filteredAllChecklistsByUser = this.checklists.filter((checklist) => checklist.user.id===this.selectedUser?.id)
-     this.searchChecklists = filteredAllChecklistsByUser
-  }
+  
 
-  findChecklistWithTag(allChecklists: Checklist[]): Checklist[] {
-    const checklistsWithTag: Checklist[] = new Array();
-    if(this.selectedUser===undefined){
-    for (let i = 0; i < allChecklists.length; i++) {
-      for (let tagNumber = 0; tagNumber < allChecklists[i].tags.length;tagNumber++) {
-        
-          if (allChecklists[i].tags[tagNumber] === this.tagsString) {
-            checklistsWithTag.push(allChecklists[i]);
-          }
-        }
-      }
-    }
-    else if(this.selectedUser!==undefined){
-      let filteredAllChecklistsByUser = this.checklists.filter((checklist) => checklist.user.id===this.selectedUser?.id)
-      for (let i = 0; i < filteredAllChecklistsByUser.length; i++) {
-        for (let tagNumber = 0; tagNumber < filteredAllChecklistsByUser[i].tags.length;tagNumber++) {
-          
-            if (filteredAllChecklistsByUser[i].tags[tagNumber] === this.tagsString) {
-              checklistsWithTag.push(filteredAllChecklistsByUser[i]);
-            }
-          }
-        }
-    }
-    return checklistsWithTag;
-  }
 
   ngOnInit() {
     this.checklistService.findAll().subscribe((data) => {
       this.checklists = data;
-    });
-    this.userService.findAll().subscribe((data) => {
-      this.users = data;
     });
   }
 }

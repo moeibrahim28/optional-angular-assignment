@@ -13,6 +13,7 @@ import { ChecklistListComponent } from './checklist-list/checklist-list.componen
 import { ItemService } from './checklist-service/item.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     UserFormComponent,
     ChecklistListComponent,
     ChecklistFormComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
