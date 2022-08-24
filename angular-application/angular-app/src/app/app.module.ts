@@ -32,11 +32,12 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     BrowserAnimationsModule,
     NgCircleProgressModule.forRoot({
       radius: 50,
-      outerStrokeWidth: 16,
-      innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
-      animationDuration: 300})
+      "titleFontSize": "15",
+      outerStrokeWidth: 10,
+      innerStrokeWidth: 5,
+      outerStrokeColor: "#0061ff",
+      innerStrokeColor: "#74a7fe",
+      animationDuration: 400})
   ],
   providers: [UserService, ChecklistService, ItemService],
   bootstrap: [AppComponent]
