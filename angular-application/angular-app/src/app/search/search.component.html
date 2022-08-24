@@ -24,7 +24,14 @@
       [disabled]="!checklistForm.form.valid"
       class="btn btn-info"
     >
-      Submit
+      Search
+    </button>
+    <button
+      type="reset"
+      (click)="resetSearch()"
+      class="btn btn-info"
+    >
+      Reset
     </button>
   </form>
   <br />

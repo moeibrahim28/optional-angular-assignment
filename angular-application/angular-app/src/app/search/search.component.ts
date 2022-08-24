@@ -35,29 +35,25 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  resetSearch(){
+    this.searchChecklists=this.checklists
+  }
+
   updateUser(e: any) {
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].id === parseInt(e.target.value)) {
         this.selectedUser = this.users[i];
       }
     }
-    if(this.selectedUser===undefined){
-      this.searchChecklists=this.checklists
-    }
-    else if (this.selectedUser!==undefined){
-      let filteredAllChecklistsByUser = this.checklists.filter((checklist) => checklist.user.id===this.selectedUser?.id)
-      this.searchChecklists = filteredAllChecklistsByUser
+      this.searchChecklists=this.findChecklistWithTag(this.checklists)
       this.selectedUser=undefined
     }
-  }
-
 
   findChecklistWithTag(allChecklists: Checklist[]): Checklist[] {
     const checklistsWithTag: Checklist[] = new Array();
     if(this.selectedUser===undefined){
     for (let i = 0; i < allChecklists.length; i++) {
       for (let tagNumber = 0; tagNumber < allChecklists[i].tags.length;tagNumber++) {
-        
           if (allChecklists[i].tags[tagNumber] === this.tagsString) {
             checklistsWithTag.push(allChecklists[i]);
           }
